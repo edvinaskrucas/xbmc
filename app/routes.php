@@ -79,6 +79,15 @@ Route::group(array('prefix' => 'api'), function() {
             $response = $request->send();
             return $response->getResult();
         });
+
+        Route::get('GetProperties', function() {
+            $playerId   = Input::get('playerid');
+            $properties = array('speed', 'position', 'time', 'totaltime', 'percentage');
+            $client = App::make('jsonrpc.client');
+            $request = $client->request('Player.GetProperties', 1, array('playerid' => (int) $playerId, 'properties' => $properties));
+            $response = $request->send();
+            return $response->getResult();
+        });
     });
 
     Route::group(array('prefix' => 'audio'), function() {
