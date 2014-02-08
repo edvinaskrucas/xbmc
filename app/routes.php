@@ -16,6 +16,10 @@ App::singleton('jsonrpc.client', function() {
 });
 
 Route::group(array('prefix' => 'api'), function() {
+    Route::group(array('prefix' => 'Player'), function() {
+
+    });
+
     Route::group(array('prefix' => 'audio'), function() {
         Route::get('artists/', function() {
             $start      = Input::get('start', 0);
