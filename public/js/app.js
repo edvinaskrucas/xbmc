@@ -107,7 +107,13 @@ var app = angular.module("app", ["ngRoute", "restangular"])
 
         loadAudioPlayer();
 
-    });
+    })
+
+    .controller("Playlist", function($scope, Restangular, $timeout) {
+
+    })
+
+    ;
 
 app.config(function(RestangularProvider) {
     RestangularProvider.setBaseUrl("api");
