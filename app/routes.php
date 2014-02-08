@@ -112,6 +112,10 @@ Route::group(array('prefix' => 'api'), function() {
         });
     });
 
+    Route::group(array('prefix' => 'Playlist'), function() {
+
+    });
+
     Route::group(array('prefix' => 'audio'), function() {
         Route::get('artists/', function() {
             $start      = Input::get('start', 0);
