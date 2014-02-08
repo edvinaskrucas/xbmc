@@ -69,6 +69,16 @@ Route::group(array('prefix' => 'api'), function() {
             $response = $request->send();
             return $response->getResult();
         });
+
+        Route::post('Move', function() {
+            $playerId   = Input::get('playerid');
+            $direction  = Input::get('direction');
+            $direction  = in_array($direction, array('left', 'right', 'up', 'down')) ? $direction : 'right';
+            $client = App::make('jsonrpc.client');
+            $request = $client->request('Player.Move', 1, array('playerid' => (int) $playerId, 'direction' => $direction));
+            $response = $request->send();
+            return $response->getResult();
+        });
     });
 
     Route::group(array('prefix' => 'audio'), function() {
