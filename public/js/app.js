@@ -1,5 +1,21 @@
 var app = angular.module("app", ["ngRoute", "restangular"])
 
+    .config(["$routeProvider", function($routeProvider) {
+        $routeProvider
+            .when(
+                "/audio/artists",
+                {
+                    templateUrl     : "tpl/audio/artists.html",
+                    controller      : "Audio.Artists"
+                }
+            )
+            .otherwise(
+            {
+                redirectTo      : "/"
+            }
+        );
+    }])
+
     .controller("Player", function($scope, Restangular, $timeout) {
 
         $scope.player = null;
@@ -160,6 +176,10 @@ var app = angular.module("app", ["ngRoute", "restangular"])
         };
 
         loadPlaylist();
+
+    })
+
+    .controller("Audio.Artists", function($scope, Restangular) {
 
     })
 

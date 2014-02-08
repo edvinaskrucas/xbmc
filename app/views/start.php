@@ -32,7 +32,9 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-lg-8"></div>
+            <div class="col-lg-8">
+                <div ng-view></div>
+            </div>
             <div class="col-lg-4">
                 <div ng-controller="Playlist">
                     <div class="panel panel-default">
