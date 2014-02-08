@@ -17,7 +17,12 @@ App::singleton('jsonrpc.client', function() {
 
 Route::group(array('prefix' => 'api'), function() {
     Route::group(array('prefix' => 'Player'), function() {
-
+        Route::get('GetActivePlayers', function() {
+            $client = App::make('jsonrpc.client');
+            $request = $client->request('Player.GetActivePlayers', 1, array());
+            $response = $request->send();
+            return $response->getResult();
+        });
     });
 
     Route::group(array('prefix' => 'audio'), function() {
