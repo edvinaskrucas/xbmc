@@ -20,6 +20,16 @@ var app = angular.module("app", ["ngRoute", "restangular"])
         };
 
         /**
+         * Move player direction (fast forward, fast backward).
+         *
+         * @param player
+         * @param direction
+         */
+        $scope.move = function(player, direction) {
+            Restangular.all("Player/Move").post({ playerid : player.playerid, direction : direction });
+        };
+
+        /**
          * Function load active audio player.
          */
         var loadAudioPlayer = function() {

@@ -13,7 +13,9 @@
     <div ng-controller="Player">
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation" ng-show="player">
             <div class="container">
+                <button type="button" class="btn btn-default navbar-btn" ng-click="move(player, 'left')"><i class="glyphicon glyphicon-fast-backward"></i></button>
                 <button type="button" class="btn btn-default navbar-btn" ng-click="play(player)"><i class="glyphicon" ng-class="{'glyphicon-play' : playerProperties.speed == 0, 'glyphicon-pause' : playerProperties.speed == 1}"></i></button>
+                <button type="button" class="btn btn-default navbar-btn" ng-click="move(player, 'right')"><i class="glyphicon glyphicon-fast-forward"></i></button>
             </div>
         </nav>
     </div>
