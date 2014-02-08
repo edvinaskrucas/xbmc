@@ -4,7 +4,7 @@ var app = angular.module("app", ["ngRoute", "restangular"])
 
         $scope.player = null;
 
-        $scope.playerSpeed = 0;
+        $scope.playerProperties = null;
 
         /**
          * Play of pause player.
@@ -14,7 +14,7 @@ var app = angular.module("app", ["ngRoute", "restangular"])
         $scope.play = function(player) {
             Restangular.all("Player/PlayPause").post({ playerid : player.playerid }).then(
                 function(response) {
-                    $scope.playerSpeed = response.data.speed;
+                    $scope.playerProperties.speed = response.data.speed;
                 }
             );
         };
@@ -28,20 +28,40 @@ var app = angular.module("app", ["ngRoute", "restangular"])
                     if (response.data.length > 0) {
                         if (response.data[0].type == "audio") {
                             $scope.player = response.data[0];
+                            loadPlayerProperties($scope.player);
                         } else {
                             $scope.player = null;
+                            $scope.playerProperties = null;
                         }
                     } else {
                         $scope.player = null;
+                        $scope.playerProperties = null;
                     }
                     $timeout(loadAudioPlayer, 1000);
                 },
                 function(response) {
                     $scope.player = null;
+                    $scope.playerProperties = null;
                     $timeout(loadAudioPlayer, 1000);
                 }
             );
         }
+
+        /**
+         * Loads properties for a given player.
+         *
+         * @param player
+         */
+        var loadPlayerProperties = function(player) {
+            Restangular.one("Player/GetProperties").get({ playerid : player.playerid }).then(
+                function(response) {
+                    $scope.playerProperties = response.data;
+                },
+                function(response) {
+                    $scope.playerProperties = null;
+                }
+            );
+        };
 
         loadAudioPlayer();
 
