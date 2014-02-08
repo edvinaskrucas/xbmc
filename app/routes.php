@@ -88,6 +88,15 @@ Route::group(array('prefix' => 'api'), function() {
             $response = $request->send();
             return $response->getResult();
         });
+
+        Route::get('GetItem', function() {
+            $playerId   = Input::get('playerid');
+            $properties = array('thumbnail', 'title', 'artist', 'album', 'year', 'fanart');
+            $client = App::make('jsonrpc.client');
+            $request = $client->request('Player.GetItem', 1, array('playerid' => (int) $playerId, 'properties' => $properties));
+            $response = $request->send();
+            return $response->getResult();
+        });
     });
 
     Route::group(array('prefix' => 'audio'), function() {
