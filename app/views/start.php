@@ -11,7 +11,7 @@
 <body id="app">
 
     <div ng-controller="Player">
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" ng-show="player">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" ng-show="player">
             <div class="container">
                 <div class="pull-left">
                     <button type="button" class="btn btn-default navbar-btn" ng-click="move(player, 'left')"><i class="glyphicon glyphicon-fast-backward"></i></button>
