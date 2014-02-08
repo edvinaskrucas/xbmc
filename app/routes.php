@@ -129,8 +129,8 @@ Route::group(array('prefix' => 'api'), function() {
         });
     });
 
-    Route::group(array('prefix' => 'audio'), function() {
-        Route::get('artists/', function() {
+    Route::group(array('prefix' => 'Audio'), function() {
+        Route::get('Artists', function() {
             $start      = Input::get('start', 0);
             $end        = Input::get('end', 0);
             $sortMethod = Input::get('sortMethod', 'artist');
