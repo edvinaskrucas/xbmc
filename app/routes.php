@@ -51,6 +51,14 @@ Route::group(array('prefix' => 'api'), function() {
             $response = $request->send();
             return $response->getResult();
         });
+
+        Route::post('Stop', function() {
+            $playerId = Input::get('playerid');
+            $client = App::make('jsonrpc.client');
+            $request = $client->request('Player.Stop', 1, array('playerid' => (int) $playerId));
+            $response = $request->send();
+            return $response->getResult();
+        });
     });
 
     Route::group(array('prefix' => 'audio'), function() {
