@@ -119,6 +119,14 @@ Route::group(array('prefix' => 'api'), function() {
             $response = $request->send();
             return $response->getResult();
         });
+
+        Route::get('GetItems', function() {
+            $playlistId = Input::get('playlistid');
+            $client = App::make('jsonrpc.client');
+            $request = $client->request('Playlist.GetItems', 1, array('playlistid' => (int) $playlistId , 'properties' => array('artist', 'title', 'album', 'duration')));
+            $response = $request->send();
+            return $response->getResult();
+        });
     });
 
     Route::group(array('prefix' => 'audio'), function() {
