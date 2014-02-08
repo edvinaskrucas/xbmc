@@ -17,6 +17,8 @@ var app = angular.module("app", ["ngRoute", "restangular"])
                             $scope.player = null;
                         }
                         $timeout(loadAudioPlayer, 1000);
+                    } else {
+                        $scope.player = null;
                     }
                 },
                 function(response) {
