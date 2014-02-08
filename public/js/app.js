@@ -185,6 +185,8 @@ var app = angular.module("app", ["ngRoute", "restangular"])
 
         $scope.end = 20;
 
+        $scope.total = null;
+
         $scope.artists = [];
 
         /**
@@ -196,6 +198,7 @@ var app = angular.module("app", ["ngRoute", "restangular"])
         $scope.load = function(start, end) {
             Restangular.one("Audio/Artists").get({ start : start, end : end }).then(
                 function(response) {
+                    $scope.total = response.data.limits.total;
                     for (var i = 0; i < response.data.artists.length; i++) {
                         $scope.artists.push(response.data.artists[i]);
                     }
