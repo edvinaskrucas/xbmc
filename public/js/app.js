@@ -111,6 +111,34 @@ var app = angular.module("app", ["ngRoute", "restangular"])
 
     .controller("Playlist", function($scope, Restangular, $timeout) {
 
+        $scope.playlist = null;
+
+        /**
+         * Load active audio playlist.
+         */
+        var loadPlaylist = function() {
+            Restangular.all("Playlist/GetPlaylists").getList().then(
+                function(response) {
+                    if (response.data.length > 0) {
+                        if (response.data[0].type == "audio") {
+                            $scope.playlist = response.data[0];
+                        } else {
+                            $scope.playlist = null;
+                        }
+                    } else {
+                        $scope.playlist = null;
+                    }
+                    $timeout(loadPlaylist, 1000);
+                },
+                function(response) {
+                    $scope.playlist = null;
+                    $timeout(loadPlaylist, 1000);
+                }
+            );
+        };
+
+        loadPlaylist();
+
     })
 
     ;
