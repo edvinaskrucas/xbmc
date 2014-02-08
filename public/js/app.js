@@ -181,6 +181,30 @@ var app = angular.module("app", ["ngRoute", "restangular"])
 
     .controller("Audio.Artists", function($scope, Restangular) {
 
+        $scope.start = 0;
+
+        $scope.end = 20;
+
+        $scope.artists = [];
+
+        /**
+         * Loads artists.
+         *
+         * @param start
+         * @param end
+         */
+        $scope.load = function(start, end) {
+            Restangular.one("Audio/Artists").get({ start : start, end : end }).then(
+                function(response) {
+                    for (var i = 0; i < response.data.artists.length; i++) {
+                        $scope.artists.push(response.data.artists[i]);
+                    }
+                }
+            );
+        };
+
+        $scope.load($scope.start, $scope.end);
+
     })
 
     ;

@@ -33,6 +33,9 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
+                <ul class="nav nav-tabs">
+                    <li><a href="#/audio/artists">Artists</a></li>
+                </ul>
                 <div ng-view></div>
             </div>
             <div class="col-lg-4">
