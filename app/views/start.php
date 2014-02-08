@@ -19,7 +19,10 @@
                     <button type="button" class="btn btn-default navbar-btn" ng-click="move(player, 'right')"><i class="glyphicon glyphicon-fast-forward"></i></button>
                     <button type="button" class="btn btn-default navbar-btn" ng-click="stop(player)"><i class="glyphicon glyphicon-stop"></i></button>
                 </div>
-                <p class="navbar-text"><strong>{{ itemInfo.label }}</strong> - <span ng-repeat="artist in itemInfo.artist">{{ artist }}</span></p>
+                <p class="navbar-text">
+                    <small><span ng-show="playerProperties.totaltime.minutes < 10">0</span>{{ playerProperties.totaltime.minutes }}:<span ng-show="playerProperties.totaltime.seconds < 10">0</span>{{ playerProperties.totaltime.seconds }} / <span ng-show="playerProperties.time.minutes < 10">0</span>{{ playerProperties.time.minutes }}:<span ng-show="playerProperties.time.seconds < 10">0</span>{{ playerProperties.time.seconds }}</small>
+                    <strong>{{ itemInfo.label }}</strong> - <span ng-repeat="artist in itemInfo.artist">{{ artist }}</span>
+                </p>
                 <div class="progress">
                     <div class="progress-bar" role="progressbar" style="width: {{ playerProperties.percentage }}%;"></div>
                 </div>
