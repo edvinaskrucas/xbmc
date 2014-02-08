@@ -35,7 +35,15 @@
             <div class="col-lg-8"></div>
             <div class="col-lg-4">
                 <div ng-controller="Playlist">
-
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Playlist</div>
+                        <div class="panel-body" ng-hide="items.length > 0">
+                            <p>Empty...</p>
+                        </div>
+                        <div class="list-group" ng-show="items.length > 0">
+                            <a ng-repeat="item in items" href="" class="list-group-item small"><strong>{{ item.title }}</strong> - <span ng-repeat="artist in item.artist">{{ artist }}</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

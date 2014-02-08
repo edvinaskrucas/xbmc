@@ -113,6 +113,8 @@ var app = angular.module("app", ["ngRoute", "restangular"])
 
         $scope.playlist = null;
 
+        $scope.items = null;
+
         /**
          * Load active audio playlist.
          */
@@ -122,17 +124,37 @@ var app = angular.module("app", ["ngRoute", "restangular"])
                     if (response.data.length > 0) {
                         if (response.data[0].type == "audio") {
                             $scope.playlist = response.data[0];
+                            loadItems($scope.playlist);
                         } else {
                             $scope.playlist = null;
+                            $scope.items = null;
                         }
                     } else {
                         $scope.playlist = null;
+                        $scope.items = null;
                     }
                     $timeout(loadPlaylist, 1000);
                 },
                 function(response) {
                     $scope.playlist = null;
+                    $scope.items = null;
                     $timeout(loadPlaylist, 1000);
+                }
+            );
+        };
+
+        /**
+         * Load given playlist items.
+         *
+         * @param playlist
+         */
+        var loadItems = function(playlist) {
+            Restangular.one("Playlist/GetItems").get({ playlistid : playlist.playlistid }).then(
+                function(response) {
+                    $scope.items = response.data.items;
+                },
+                function(response) {
+                    $scope.items = null;
                 }
             );
         };
