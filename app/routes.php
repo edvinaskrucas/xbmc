@@ -23,6 +23,26 @@ Route::group(array('prefix' => 'api'), function() {
             $response = $request->send();
             return $response->getResult();
         });
+
+        Route::post('Open', function() {
+            $item       = Input::get('item');
+            $type       = Input::get('type');
+
+            $client = App::make('jsonrpc.client');
+
+            switch ($type) {
+                case 'artist':
+                    $params = array('item' => array('artistid' => (int) $item), 'options' => array('resume' => true));
+                    break;
+
+                default:
+                    $params = array();
+            }
+
+            $request = $client->request('Player.Open', 1, $params);
+            $response = $request->send();
+            return $response->getResult();
+        });
     });
 
     Route::group(array('prefix' => 'audio'), function() {
