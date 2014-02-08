@@ -113,7 +113,12 @@ Route::group(array('prefix' => 'api'), function() {
     });
 
     Route::group(array('prefix' => 'Playlist'), function() {
-
+        Route::get('GetPlaylists', function() {
+            $client = App::make('jsonrpc.client');
+            $request = $client->request('Playlist.GetPlaylists', 1, array());
+            $response = $request->send();
+            return $response->getResult();
+        });
     });
 
     Route::group(array('prefix' => 'audio'), function() {
