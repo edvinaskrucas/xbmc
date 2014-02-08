@@ -1,4 +1,8 @@
-var app = angular.module("app", ["ngRoute", "restangular"]);
+var app = angular.module("app", ["ngRoute", "restangular"])
+
+    .controller("Player", function($scope, Restangular) {
+
+    });
 
 app.config(function(RestangularProvider) {
     RestangularProvider.setBaseUrl("api");
