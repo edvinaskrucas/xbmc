@@ -59,6 +59,16 @@ Route::group(array('prefix' => 'api'), function() {
             $response = $request->send();
             return $response->getResult();
         });
+
+        Route::post('Seek', function() {
+            $playerId   = Input::get('playerid');
+            $seekValue  = Input::get('value');
+            $seekValue  = (int) $seekValue > 100 ? 100 : $seekValue;
+            $client = App::make('jsonrpc.client');
+            $request = $client->request('Player.Seek', 1, array('playerid' => (int) $playerId, 'value' => (int) $seekValue));
+            $response = $request->send();
+            return $response->getResult();
+        });
     });
 
     Route::group(array('prefix' => 'audio'), function() {
