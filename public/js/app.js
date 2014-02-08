@@ -199,9 +199,9 @@ var app = angular.module("app", ["ngRoute", "restangular"])
             Restangular.one("Audio/Artists").get({ start : start, end : end }).then(
                 function(response) {
                     $scope.total = response.data.limits.total;
-                    for (var i = 0; i < response.data.artists.length; i++) {
-                        $scope.artists.push(response.data.artists[i]);
-                    }
+                    $scope.start = response.data.limits.start;
+                    $scope.end = response.data.limits.end;
+                    $scope.artists = response.data.artists;
                 }
             );
         };

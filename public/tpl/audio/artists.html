@@ -4,3 +4,8 @@
         <td><button type="button" class="btn btn-default btn-sm" ng-click="play(artist)"><i class="glyphicon glyphicon-play"></i></button></td>
     </tr>
 </table>
+
+<ul class="pagination" ng-show="total > 0">
+    <li ng-class="{disabled : start <= 0}"><a href="" ng-click="load(start - 20, end - 20)">&laquo;</a></li>
+    <li ng-class="{disabled : end >= total}"><a href="" ng-click="load(start + 20, end + 20)">&raquo;</a></li>
+</ul>
