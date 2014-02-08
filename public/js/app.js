@@ -30,6 +30,16 @@ var app = angular.module("app", ["ngRoute", "restangular"])
         };
 
         /**
+         * Stop player.
+         *
+         * @param player
+         * @param direction
+         */
+        $scope.stop = function(player) {
+            Restangular.all("Player/Stop").post({ playerid : player.playerid });
+        };
+
+        /**
          * Function load active audio player.
          */
         var loadAudioPlayer = function() {
