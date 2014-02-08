@@ -203,6 +203,15 @@ var app = angular.module("app", ["ngRoute", "restangular"])
             );
         };
 
+        /**
+         * Play selected artist.
+         *
+         * @param artist
+         */
+        $scope.play = function(artist) {
+            Restangular.all("Player/Open").post({ item : artist.artistid, type : "artist" });
+        };
+
         $scope.load($scope.start, $scope.end);
 
     })
