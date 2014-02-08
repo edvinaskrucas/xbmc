@@ -6,6 +6,8 @@ var app = angular.module("app", ["ngRoute", "restangular"])
 
         $scope.playerProperties = null;
 
+        $scope.itemInfo = null;
+
         /**
          * Play of pause player.
          *
@@ -49,19 +51,23 @@ var app = angular.module("app", ["ngRoute", "restangular"])
                         if (response.data[0].type == "audio") {
                             $scope.player = response.data[0];
                             loadPlayerProperties($scope.player);
+                            loadItemInfo($scope.player);
                         } else {
                             $scope.player = null;
                             $scope.playerProperties = null;
+                            $scope.itemInfo = null;
                         }
                     } else {
                         $scope.player = null;
                         $scope.playerProperties = null;
+                        $scope.itemInfo = null;
                     }
                     $timeout(loadAudioPlayer, 1000);
                 },
                 function(response) {
                     $scope.player = null;
                     $scope.playerProperties = null;
+                    $scope.itemInfo = null;
                     $timeout(loadAudioPlayer, 1000);
                 }
             );
@@ -79,6 +85,22 @@ var app = angular.module("app", ["ngRoute", "restangular"])
                 },
                 function(response) {
                     $scope.playerProperties = null;
+                }
+            );
+        };
+
+        /**
+         * Loads info of active item in player.
+         *
+         * @param player
+         */
+        var loadItemInfo = function(player) {
+            Restangular.one("Player/GetItem").get({ playerid : player.playerid }).then(
+                function(response) {
+                    $scope.itemInfo = response.data.item;
+                },
+                function(response) {
+                    $scope.itemInfo = null;
                 }
             );
         };

@@ -19,6 +19,7 @@
                     <button type="button" class="btn btn-default navbar-btn" ng-click="move(player, 'right')"><i class="glyphicon glyphicon-fast-forward"></i></button>
                     <button type="button" class="btn btn-default navbar-btn" ng-click="stop(player)"><i class="glyphicon glyphicon-stop"></i></button>
                 </div>
+                <p class="navbar-text"><strong>{{ itemInfo.label }}</strong> - <span ng-repeat="artist in itemInfo.artist">{{ artist }}</span></p>
             </div>
         </nav>
     </div>
