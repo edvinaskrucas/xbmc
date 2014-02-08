@@ -10,11 +10,13 @@
 </head>
 <body id="app">
 
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation" ng-controller="Player">
-        <div class="container">
+    <div ng-controller="Player">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" ng-show="player">
+            <div class="container">
 
-        </div>
-    </nav>
+            </div>
+        </nav>
+    </div>
 
     <div ng-view class="fill"></div>
 
