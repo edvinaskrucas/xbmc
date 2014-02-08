@@ -20,6 +20,9 @@
                     <button type="button" class="btn btn-default navbar-btn" ng-click="stop(player)"><i class="glyphicon glyphicon-stop"></i></button>
                 </div>
                 <p class="navbar-text"><strong>{{ itemInfo.label }}</strong> - <span ng-repeat="artist in itemInfo.artist">{{ artist }}</span></p>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: {{ playerProperties.percentage }}%;"></div>
+                </div>
             </div>
         </nav>
     </div>
