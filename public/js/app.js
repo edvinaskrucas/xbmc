@@ -4,6 +4,21 @@ var app = angular.module("app", ["ngRoute", "restangular"])
 
         $scope.player = null;
 
+        $scope.playerSpeed = 0;
+
+        /**
+         * Play of pause player.
+         *
+         * @param player
+         */
+        $scope.play = function(player) {
+            Restangular.all("Player/PlayPause").post({ playerid : player.playerid }).then(
+                function(response) {
+                    $scope.playerSpeed = response.data.speed;
+                }
+            );
+        };
+
         /**
          * Function load active audio player.
          */

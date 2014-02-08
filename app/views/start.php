@@ -13,7 +13,7 @@
     <div ng-controller="Player">
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation" ng-show="player">
             <div class="container">
-
+                <button type="button" class="btn btn-default navbar-btn" ng-click="play(player)"><i class="glyphicon" ng-class="{'glyphicon-play' : playerSpeed == 0, 'glyphicon-pause' : playerSpeed == 1}"></i></button>
             </div>
         </nav>
     </div>
