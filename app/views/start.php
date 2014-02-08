@@ -10,6 +10,12 @@
 </head>
 <body id="app">
 
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation" ng-controller="Player">
+        <div class="container">
+
+        </div>
+    </nav>
+
     <div ng-view class="fill"></div>
 
     <script src="https://code.jquery.com/jquery.js"></script>
